@@ -1,0 +1,7 @@
+
+
+li.completed {
+    list-style-type: '✔';
+    color: green;
+    padding: 1px;
+}
