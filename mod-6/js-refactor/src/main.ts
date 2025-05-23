@@ -13,6 +13,7 @@ console.log(laptop);
 console.log(laptop.name);
 laptop.price = 1500;
 console.log(laptop.price);
+
 // console.log(laptop._price); // X
 console.log(laptop.inStock);
 // console.log(laptop.displayDetails());
