@@ -9,7 +9,7 @@ export function getProductDetails() {
 }
 
 
-function getProductReviews() {
+export function getProductReviews() {
     return new Promise((resolve, reject) => {
         const reviews = [{content: "This tv is awesome!"}]
 
@@ -22,7 +22,7 @@ function getProductReviews() {
 }
 
 
-function getRelatedProducts() {
+export function getRelatedProducts() {
     return new Promise((resolve, reject) => {
         const relatedProducts = [{name: 'ps5', price: 500}];
 
