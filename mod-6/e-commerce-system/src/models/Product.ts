@@ -70,6 +70,14 @@ export default class Product {
     this.thumbnail = thumbnail;
     this.images = images;
   }
+
+  displayDetails() {
+    // Todo: implement method
+  }
+
+  getPriceWithDiscount() {
+    // Todo: implement method
+  }
 }
 
 const product = new Product(
