@@ -24,7 +24,7 @@
         color: hsl(228, 45%, 44%);
       }
     </style>
-    <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/style.css" />
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -39,13 +39,43 @@
     ></script>
     <script type="module" src="./src/secrets.js" defer></script>
     <script type="module" src="./src/script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
-  <body>
-    <h1>IP Address Tracker Search for any IP address or domain IP Address Location
-    Timezone UTC</h1>
+  <body class="m-10">
+    <h1 class="text-2xl font-bold text-center">
+      IP Address Tracker Search for any IP address or domain IP Address Location
+      Timezone UTC
+    </h1>
     <!-- add offset value dynamically using the API -->
-    <h2>ISP</h2>
-     <div id="map"></div>
+
+    <!-- SEARCH  -->
+    <div class="mt-10 flex justify-center">
+      <label for="search-input" class="flex rounded-md w-md">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Ex: Google.com or 8.8.8.8"
+          class="border flex-1 p-1"
+        />
+        <input
+          type="submit"
+          value="Search"
+          id="search-button"
+          class="ml-5 border rounded-md p-1"
+        />
+      </label>
+    </div>
+
+    <!-- LOCATION RESULTS  -->
+    <div id="ip-info" class="flex justify-between m-10">
+      <div class="border-r-1 p-2">IP Address <span id="ip-address"></span></div>
+      <div class="border-r-1 p-2">Location <span id="location"></span></div>
+      <div class="border-r-1 p-2">Timezone <span id="timezone"></span></div>
+      <div class="p-2">ISP <span id="isp"></span></div>
+    </div>
+
+    <!-- MAP  -->
+    <div id="map" class="outline rounded shadow-xl"></div>
 
     <div class="attribution">
       Challenge by
