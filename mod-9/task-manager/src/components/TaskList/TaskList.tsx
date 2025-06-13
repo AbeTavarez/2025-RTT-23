@@ -53,19 +53,39 @@ function TaskList() {
 
   // State variable for the dynamic functionality
   const [tasksState, setTaskState] = useState(tasks);
+  
+
+  // Handle deleting a task (passed down to -> onDelete)
+  const handleDelete = (taskId: string) => {
+    const updatedTasks = tasksState.filter((task) => task.id !== taskId);
+    setTaskState(updatedTasks);
+  };
+
+  // Handle updating the status of a task (passed down to -> onStatusChange)
+  const handleStatusChange = (taskId: string, newStatus: string) => {
+    const updatedTasks: Task[] = tasksState.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, status: newStatus };
+      }
+      return task;
+    });
+    setTaskState(updatedTasks);
+  };
+
+  // Handles filtering of the tasks
+  const handleFilterChange = () => {};
 
   return (
     <>
-      <TaskFilter />
+      <TaskFilter onFilterChange={handleFilterChange} />
       <ul>
-        {tasks.map((task) => (
+        {/* here we map over the state data (taskState) instead of the static array (tasks) */}
+        {tasksState.map((task) => (
           <TaskItem
             key={task.id}
             task={task}
-            onDelete={() => console.log(`Deleting task with ID: ${task.id}`)}
-            onStatusChange={() =>
-              console.log(`Changing status for task with ID: ${task.id}`)
-            }
+            onDelete={handleDelete}
+            onStatusChange={handleStatusChange}
           />
         ))}
       </ul>
