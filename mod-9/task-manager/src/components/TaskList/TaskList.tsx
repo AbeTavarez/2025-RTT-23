@@ -4,6 +4,7 @@ import TaskItem from "../TaskItem/TaskItem";
 import { useState } from "react";
 
 function TaskList() {
+  // Initial tasks for our mockup
   const tasks: Task[] = [
     {
       id: "1",
@@ -50,11 +51,12 @@ function TaskList() {
     },
   ];
 
-//   const [tasksState, setTaskState] = useState(tasks);
+  // State variable for the dynamic functionality
+  const [tasksState, setTaskState] = useState(tasks);
 
   return (
     <>
-    <TaskFilter/>
+      <TaskFilter />
       <ul>
         {tasks.map((task) => (
           <TaskItem
