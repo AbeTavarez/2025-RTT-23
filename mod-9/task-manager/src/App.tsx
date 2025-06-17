@@ -1,15 +1,15 @@
 
 import './App.css'
-import TaskList from './components/TaskList/TaskList'
+import Dashboard from './Dashboard/Dashboard'
 
 function App() {
 
 
   return (
-    <>
-      <h1>Task Manager App</h1>
-      <TaskList />
-    </>
+    <main className="text-center">
+      <h1 className='text-5xl font-bold m-10'>Task Manager App</h1>
+     <Dashboard />
+    </main>
   )
 }
 

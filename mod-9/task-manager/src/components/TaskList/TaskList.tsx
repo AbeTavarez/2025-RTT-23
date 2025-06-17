@@ -53,7 +53,10 @@ function TaskList() {
 
   // State variable for the dynamic functionality
   const [tasksState, setTaskState] = useState(tasks);
-  
+  const [filters, setFilters] = useState<{
+    status?: string;
+    priority?: string;
+  }>({});
 
   // Handle deleting a task (passed down to -> onDelete)
   const handleDelete = (taskId: string) => {
@@ -73,14 +76,23 @@ function TaskList() {
   };
 
   // Handles filtering of the tasks
-  const handleFilterChange = () => {};
+  const handleFilterChange = (filters: { status: string; priority: string }) =>
+    setFilters(filters);
+
+  const filteredTasks = tasksState.filter((task) => {
+    const matchesStatus = !filters.status || task.status === filters.status;
+    const matchesPriority =
+      !filters.priority || task.priority === filters.priority;
+    return matchesStatus && matchesPriority;
+  });
 
   return (
     <>
       <TaskFilter onFilterChange={handleFilterChange} />
+      {/* TASK FORM */}
       <ul>
         {/* here we map over the state data (taskState) instead of the static array (tasks) */}
-        {tasksState.map((task) => (
+        {filteredTasks.map((task) => (
           <TaskItem
             key={task.id}
             task={task}
