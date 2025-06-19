@@ -1,6 +1,7 @@
 import Counter from "./components/Counter";
 import "./App.css";
 import ShowHideMessage from "./components/ShowHideMessage";
+import ColorPicker from "./components/ColorPicker";
 
 function App() {
   return (
@@ -12,6 +13,10 @@ function App() {
       <hr className="my-10"/>
 
       <ShowHideMessage />
+
+      <hr className="my-10"/>
+
+      <ColorPicker />
     </div>
   );
 }
