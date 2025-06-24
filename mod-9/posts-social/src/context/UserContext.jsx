@@ -1,7 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 
 // 1. Create a new context
-const UserContext = createContext(null);
+export const UserContext = createContext(null);
 
 function UserProvider({ children }) {
   // 2. Create state and logic
