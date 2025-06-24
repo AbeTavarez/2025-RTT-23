@@ -8,6 +8,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import NavBar from "./components/NavBar";
 import UserProvider from "./context/UserContext";
 import "./App.css";
+import UserProfilePage from "./pages/UserProfilePage";
 
 // 1. Create a new context object
 export const ThemeContext = createContext("light");
@@ -31,6 +32,7 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/:productId" element={<ProductDetailPage />} />
+          <Route path="/profile" element={<UserProfilePage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </UserProvider>
