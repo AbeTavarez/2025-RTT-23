@@ -5,20 +5,24 @@ function UserProfilePage() {
   const { user, login, logout } = useContext(UserContext);
 
   return (
-    <main>
-      <div>{!user && (
-        <>
-        <h1>Please Sign in</h1>
-        <button onClick={login}>Login</button>
-        </>
-      )}</div>
+    <main className="p-5 flex justify-center items-center">
+      <div>
+        {!user && (
+          <>
+            <h1>Please Sign in</h1>
+            <button onClick={login}>Login</button>
+          </>
+        )}
+      </div>
 
-      <div>{user && (
-        <>
+      <div>
+        {user && (
+          <>
             <h1>{user.firstName} 's Profile</h1>
-            <button onClick={logout}>Logout</button>
-        </>
-      )}</div>
+            <button className="btn-primary" onClick={logout}>Logout</button>
+          </>
+        )}
+      </div>
     </main>
   );
 }

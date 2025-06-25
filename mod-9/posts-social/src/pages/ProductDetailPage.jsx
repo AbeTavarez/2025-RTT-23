@@ -17,7 +17,7 @@ function ProductDetailPage() {
   }, [productId]);
 
   return (
-    <>
+    <main className="p-5 flex justify-center items-center">
       {currentProduct && (
         <div>
           <h1>{currentProduct.title}</h1>
@@ -29,7 +29,7 @@ function ProductDetailPage() {
           <p>{currentProduct.description}</p>
         </div>
       )}
-    </>
+    </main>
   );
 }
 

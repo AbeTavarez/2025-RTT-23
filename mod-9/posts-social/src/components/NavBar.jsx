@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../App";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
@@ -9,25 +9,56 @@ function NavBar() {
   const { user, login } = useContext(UserContext);
 
   return (
-    <nav>
-      <h3>Current mode: {theme}</h3>
-      <button onClick={toggleTheme}>Toggle Theme</button>
+    <nav className="p-5 flex justify-between items-center">
+      <div>
+        <h3 className="text-2xl font-bold">Current mode: {theme}</h3>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={toggleTheme}
+        >
+          Toggle Theme
+        </button>
+      </div>
       {/* <input type="checkbox" onChange={toggleTheme}/> */}
-      <ul>
+
+      {/* LINKS    */}
+      <ul className="flex space-x-5">
         <li>
-          <Link to="/">Home</Link>
+          <NavLink
+            className={({ isActive }) => (isActive ? "underline" : "")}
+            to="/"
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <NavLink
+            className={({ isActive }) => (isActive ? "underline" : "")}
+            to="/about"
+          >
+            About
+          </NavLink>
         </li>
         <li>
-          <Link to="/products">Products</Link>
+          <NavLink
+            className={({ isActive }) => (isActive ? "underline" : "")}
+            to="/products"
+          >
+            Products
+          </NavLink>
         </li>
         {user ? (
           <li>
-            <Link to="/profile">Profile</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? "underline" : "")}
+              to="/profile"
+            >
+              Profile
+            </NavLink>
           </li>
-        ) : <button onClick={login}>Login</button>}
+        ) : (
+          <button onClick={login}>Login</button>
+        )}
       </ul>
     </nav>
   );

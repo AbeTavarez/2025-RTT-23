@@ -16,7 +16,7 @@ function ProductsPage() {
   }, []);
 
   return (
-    <div>
+    <main className="p-5 flex justify-center items-center">
       <h1>Products Page</h1>
 
       <div>
@@ -27,7 +27,7 @@ function ProductsPage() {
           </Link>
         ))}
       </div>
-    </div>
+    </main>
   );
 }
 export default ProductsPage;
