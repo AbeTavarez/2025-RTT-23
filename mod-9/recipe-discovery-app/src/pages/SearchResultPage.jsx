@@ -1,6 +1,8 @@
 import { Link, useSearchParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
+// https://reactrouter.com/start/declarative/url-values?plugin_version=chrome_4.0.8
+
 function SearchResultPage() {
   const [searchParams] = useSearchParams();
   const searchTerm = searchParams.get("query");
