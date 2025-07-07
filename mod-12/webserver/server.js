@@ -8,11 +8,10 @@ import url from 'url'
 // Express App
 const app = express();
 const PORT = 3000;
-console.log(import.meta.url);
 
 const fileName = url.fileURLToPath(import.meta.url)
 const __dirname = path.dirname(fileName)
-console.log(__dirname);
+
 
 
 // middlewares
