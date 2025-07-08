@@ -6,6 +6,10 @@ import CategoryPage from "./pages/CategoryPage";
 import RecipeDetailPage from "./pages/RecipeDetailPage";
 import SearchResultPage from "./pages/SearchResultPage";
 
+// GET ENV VARIABLES
+console.log(import.meta.env.VITE_REST_COUNTRY_API_KEY);
+// const api_key = import.meta.env.VITE_REST_COUNTRY_API_KEY
+
 function App() {
   return (
     <>

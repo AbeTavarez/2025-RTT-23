@@ -5,7 +5,11 @@ import useFetch from "../hooks/useFetch";
 
 function SearchResultPage() {
   const [searchParams] = useSearchParams();
+  console.log(searchParams);
+
   const searchTerm = searchParams.get("query");
+  console.log(searchTerm);
+  
 
   const {data, loading, error} = useFetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`);
 
