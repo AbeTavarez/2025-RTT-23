@@ -4,13 +4,25 @@ const app = express();
 const PORT = 3000;
 
 //? ==== Middleware ==== //
+function checkApiKey(req, res, next) {
+  console.log("hello from checkApiKey middleware");
+
+  // if there is a valid api key
+  if (req.headers["x-api-key"] === "supersecretkey") {
+    next();
+  } else {
+    //todo
+    res.send("Invalid API key")
+  }
+}
+app.use("/api", checkApiKey);
 
 // global middleware
 app.use((req, res, next) => {
-    console.log(`Custom logger middleware. URL ${req.url}: Method ${req.method}`);
-    console.log('Headers: ',  req.headers);
-    
-    next();
+  console.log(`Custom logger middleware. URL ${req.url}: Method ${req.method}`);
+  console.log("Headers: ", req.headers);
+
+  next();
 });
 
 // global middleware
@@ -34,6 +46,10 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //? ======== Routes ================//
+
+app.get('/api', (req, res) => {
+    res.send('testing api route')
+})
 
 /**
  * POST
@@ -100,9 +116,9 @@ app.get("/search", (req, res) => {
 /**
  * GET /admin
  */
-app.get('/admin', (req, res) => {
-    res.send("sending admin data")
-})
+app.get("/admin", (req, res) => {
+  res.send("sending admin data");
+});
 
 /**
  * Error middleware
