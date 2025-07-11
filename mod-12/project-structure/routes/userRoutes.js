@@ -5,12 +5,12 @@ const router = express.Router();
 
 // middleware
 router.use(express.json());
-router.use((req, res, next) => {
-    console.log('Method:', req.method);
-    console.log('Path:', req.path);
-    console.log('Time:', Date.now());
-    next();
-})
+// router.use((req, res, next) => {
+//     console.log('Method:', req.method);
+//     console.log('Path:', req.path);
+//     console.log('Time:', Date.now());
+//     next();
+// })
 
 /**
  * GET /api/users/
