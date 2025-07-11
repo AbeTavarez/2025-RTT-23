@@ -1,5 +1,6 @@
 import express from 'express'
-import userRoutes from './routes/userRoutes.js'
+import userRoutes from './routes/userRoutes.js';
+import movieRoutes from './routes/movieRoutes.js';
 import dotenv from 'dotenv';
 import morgan from 'morgan'
 
@@ -14,6 +15,7 @@ app.use(morgan('dev'))
 
 // === Routes ====
 app.use('/api/users', userRoutes);
+app.use('/api/movies', movieRoutes);
 
 
 app.get('/', (req, res) => {
