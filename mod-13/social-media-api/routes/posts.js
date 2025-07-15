@@ -62,4 +62,37 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// update a post
+router.patch("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
+    // const updatedPost = await Post.findOneAndUpdate(
+    //   { title: "A Brand New Post" },
+    //   req.body,
+    //   {
+    //     new: true,
+    //     upsert: true,
+    //   },
+    // );
+
+    res.json(updatedPost);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedPost = await Post.findByIdAndDelete(req.params.id);
+    res.json(deletedPost);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 export default router;
