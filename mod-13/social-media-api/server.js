@@ -3,8 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import usersRouter from "./routes/users.js";
 import postsRouter from "./routes/posts.js";
-
-
+import productsRouter from "./routes/products.js";
 
 dotenv.config();
 
@@ -14,8 +13,9 @@ const uri = process.env.MONGODB_URL;
 
 // ====== middleware =======
 app.use(express.json());
-app.use('/api/users', usersRouter);
-app.use('/api/posts', postsRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/posts", postsRouter);
+app.use("/api/products", productsRouter);
 
 // Connect to MongoDB using Mongoose
 mongoose
