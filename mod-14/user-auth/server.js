@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import usersRouter from "./routes/users.js";
+import verifyJWT from "./middlewares/verifyJWT.js";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(verifyJWT);
 app.use('/api/users', usersRouter);
 
 
