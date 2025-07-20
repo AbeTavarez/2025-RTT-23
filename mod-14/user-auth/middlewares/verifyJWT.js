@@ -5,7 +5,7 @@ dotenv.config();
 const secret = process.env.JWT_SECRET;
 
 export default function verifyJWT(req, res, next) {
-  let token = req.headers.authorization;
+  let token = req.headers.authorization || req.body?.token || req.query?.token;
   // Bearer <token>
 
   if (token) {
@@ -22,8 +22,8 @@ export default function verifyJWT(req, res, next) {
     req.user = data;
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'Invalid token!' });
+    return res.status(401).json({ message: "Invalid token!" });
   }
 }
 
-// req -> middleware (req.user = data) -> route -> res 
+// req -> middleware (req.user = data) -> route -> res

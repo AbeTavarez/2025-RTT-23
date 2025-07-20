@@ -2,9 +2,10 @@ import express from "express";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import verifyJWT from "../middlewares/verifyJWT.js";
+import adminOnly from "../middlewares/adminOnly.js";
 
 dotenv.config();
-
 
 const secret = process.env.JWT_SECRET;
 
@@ -12,10 +13,61 @@ const expiration = "2h";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-    console.log("USER", req.user);
-    
-    res.json(req.user);
+router.get("/me", verifyJWT, async (req, res) => {
+  try {
+    console.log("req.user", req.user);
+
+    const user = await User.findById(req.user._id);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.get("/dashboard", verifyJWT, adminOnly, async (req, res) => {
+  try {
+    //TODO: aggregate all data for the admin dashboard
+    console.log("req.user", req.user);
+
+    const user = await User.findById(req.user._id);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.get("/:id", verifyJWT, async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.patch("/:id", verifyJWT, async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+router.delete("/:id", verifyJWT, async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 router.post("/register", async (req, res) => {
@@ -52,6 +104,7 @@ router.post("/login", async (req, res) => {
       _id: user._id,
       username: user.username,
       email: user.email,
+      role: user.role,
     };
 
     const token = jwt.sign({ data: payload }, secret, {
@@ -59,7 +112,6 @@ router.post("/login", async (req, res) => {
     });
 
     res.json({ token, user });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
