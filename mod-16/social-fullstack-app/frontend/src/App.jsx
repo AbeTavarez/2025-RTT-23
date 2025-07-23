@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/Home';
 import RegisterPage from './pages/Register';
 import SignInPage from './pages/SignIn';
+import NavBar from './components/Navbar';
 
 import './App.css'
 
@@ -11,7 +12,7 @@ function App() {
 
   return (
     <>
-      <h1>Social Media App</h1>
+      <NavBar />
 
       <Routes>
         <Route path='/' element={<HomePage />} />
