@@ -8,7 +8,7 @@ router.use(authMiddleware);
 
 router.get("/", async (req, res) => {
   try {
-    const posts = await Post.find({ author: req.user._id });
+    const posts = await Post.find();
     res.json(posts);
   } catch (error) {
     console.error(error);

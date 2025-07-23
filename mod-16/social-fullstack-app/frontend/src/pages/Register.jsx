@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { backendClient } from "../clients/backendClient";
+import { useNavigate } from "react-router-dom";
+
 
 function RegisterPage() {
+    const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -20,8 +24,11 @@ function RegisterPage() {
 
     try {
         const res = await backendClient.post('/users/register', formData);
-        console.log(res);
+        console.log(res.data);
+
+        localStorage.setItem('social-app-token', JSON.stringify(res.data.token))
         
+        navigate('/feed');
     } catch (error) {
         console.log(error);     
     }
